@@ -1,0 +1,12 @@
+version: "2"
+services:
+  postgis:
+    build:
+      context: https://github.com/kartoza/docker-postgis.git#10.0-2.4:/
+    ports:
+      - 5432:5432
+
+    environment:
+      - ALLOW_IP_RANGE=0.0.0.0/0
+      - POSTGRES_USER=docker
+      - POSTGRES_DBNAME=geopoppy
