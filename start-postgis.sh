@@ -1,4 +1,5 @@
 #!/bin/bash
+#FROM kartoza/docker-postgis: https://github.com/kartoza/docker-postgis
 
 # This script will run as the postgres user due to the Dockerfile USER directive
 
