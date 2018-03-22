@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#FROM kartoza/docker-postgis: https://github.com/kartoza/docker-postgis
 
 source /env-data.sh
 
