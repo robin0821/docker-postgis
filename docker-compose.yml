@@ -5,7 +5,7 @@ services:
     ports:
       - 5432:5432
     command: >
-      bash -c "wget -P /home https://raw.githubusercontent.com/jancelin/docker-postgis/master/start-postgis.sh &&
+      bash -c "wget -P / https://raw.githubusercontent.com/jancelin/docker-postgis/master/setup-database.sh &&
                wget -P /home https://github.com/jancelin/docker-postgis/raw/master/geopoppy.sql &&
                chmod +x /home/start-postgis.sh &&
                sh /home/start-postgis.sh"
