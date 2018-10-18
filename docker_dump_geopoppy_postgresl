@@ -1,0 +1,1 @@
+docker exec  pirate_postgis_1 sh -c "PGPASSWORD=docker  pg_dump  --host=localhost --port=5432 -U docker geopoppy > /home/geopoppy_$(date +%d).sql"
