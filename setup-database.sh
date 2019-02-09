@@ -94,11 +94,15 @@ RESULT=`su - postgres -c "psql -l | grep -w ${POSTGRES_DBNAME} | wc -l"`
 echo "Check default db exists"
 if [[ ! ${RESULT} == '1' ]]; then
 	echo "Create default db ${POSTGRES_DBNAME}"
-	su - postgres -c "CREATE USER ${POSTGRES_USER} WITH PASSWORD 'docker'"
-	su - postgres -c "ALTER USER ${POSTGRES_USER} WITH SUPERUSER"
 	su - postgres -c "createdb -O ${POSTGRES_USER} -T template_postgis ${POSTGRES_DBNAME}"
+	echo "Alter user ${POSTGRES_USER} > superuser"
+	su - postgres -c "ALTER USER ${POSTGRES_USER} WITH SUPERUSER"
+	echo "pg_restore  $POSTGRES_DBNAME ... "
 #        su - postgres -c " psql $POSTGRES_DBNAME -f /home/$POSTGRES_DUMP "
         su - postgres -c " pg_restore -d $POSTGRES_DBNAME /home/$POSTGRES_DUMP "
+	echo "OK !!!"
+	
+	
 else
 	echo "${POSTGRES_DBNAME} db already exists"
 fi
