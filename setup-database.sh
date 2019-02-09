@@ -94,6 +94,7 @@ RESULT=`su - postgres -c "psql -l | grep -w ${POSTGRES_DBNAME} | wc -l"`
 echo "Check default db exists"
 if [[ ! ${RESULT} == '1' ]]; then
 	echo "Create default db ${POSTGRES_DBNAME}"
+	su - postgres -c "createuser -s -d -e ${POSTGRES_USER} WITH ENCRYPTED PASSWORD '${POSTGRES_USER}'"
 	su - postgres -c "createdb -O ${POSTGRES_USER} -T template_postgis ${POSTGRES_DBNAME}"
 #        su - postgres -c " psql $POSTGRES_DBNAME -f /home/$POSTGRES_DUMP "
         su - postgres -c " pg_restore -d $POSTGRES_DBNAME /home/$POSTGRES_DUMP "
