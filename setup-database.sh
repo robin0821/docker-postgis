@@ -96,7 +96,7 @@ if [[ ! ${RESULT} == '1' ]]; then
 	echo "Create default db ${POSTGRES_DBNAME}"
 	su - postgres -c "createdb -O ${POSTGRES_USER} -T template_postgis ${POSTGRES_DBNAME}"
 	echo "Alter user ${POSTGRES_USER} > superuser"
-	CMD="ALTER USER ${POSTGRES_USER} WITH SUPERUSER;"
+	CMD="ALTER USER ${POSTGRES_USER} WITH SUPERUSER CREATEDB;"
 	su - postgres -c "psql -c \"$CMD\""
 	echo "pg_restore  $POSTGRES_DBNAME ... "
 #        su - postgres -c " psql $POSTGRES_DBNAME -f /home/$POSTGRES_DUMP "
